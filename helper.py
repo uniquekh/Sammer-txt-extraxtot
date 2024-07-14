@@ -214,7 +214,7 @@ async def send_vid(bot: Client, m: Message,cc,filename,thumb,name,prog):   #Bot 
     await reply.delete (True)   #Bot Created by @NtrRazYt
        #Bot Created by @NtrRazYt
    #Bot Created by @NtrRazYt
-async def ut_vid_down(url, name, m3u8):
+async def ut_vid_down(url, name,):
     r = requests.get(url)
     m3u8_master = m3u8.loads(r.text)
     playlist_url = m3u8_master.data['playlist'][0]['uri']
