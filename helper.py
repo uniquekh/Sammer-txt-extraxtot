@@ -214,19 +214,23 @@ async def send_vid(bot: Client, m: Message,cc,filename,thumb,name,prog):   #Bot 
     await reply.delete (True)   #Bot Created by @NtrRazYt
        #Bot Created by @NtrRazYt
    #Bot Created by @NtrRazYt
-async def ut_vid_down(url, name,):
-    r = requests.get(url)
-    m3u8_master = m3u8.loads(r.text)
-    playlist_url = m3u8_master.data['playlist'][0]['uri']
-    r = requests.get(playlist_url)  
-    playlist = m3u8.loads(r.text) 
-    playlist.data['segments'][0]['uri']
-    r = requests.get( playlist.data['segments'][0]['uri'])
+# async def ut_vid_down(url, name,):
+#     r = requests.get(url)
+#     m3u8_master = m3u8.loads(r.text)
+#     playlist_url = m3u8_master.data['playlist'][0]['uri']
+#     r = requests.get(playlist_url)  
+#     playlist = m3u8.loads(r.text) 
+#     playlist.data['segments'][0]['uri']
+#     r = requests.get( playlist.data['segments'][0]['uri'])
      
-    with open("{name}.ts" "wb") as f:
-        for segment in playlist.data['segments']:
-            url = segment['uri']
-            r = requests.get(url)
-            f.write(r.content)
+#     with open("{name}.ts" "wb") as f:
+#         for segment in playlist.data['segments']:
+#             url = segment['uri']
+#             r = requests.get(url)
+#             f.write(r.content)
 
-            subprocess.run(['ffmpeg', '-i', "{name}.ts", "{name}.mp4"])
+#             subprocess.run(['ffmpeg', '-i', "{name}.ts", "{name}.mp4"])
+
+async def down_lec(url, name):
+    subprocess.run(f'ffmpeg -i "{url}" -c copy "{name}.mp4"')
+
