@@ -302,7 +302,7 @@ async def account_login(bot: Client, m: Message):
       data["email"] = raw_text.split("*")[0]
       data["password"] = raw_text.split("*")[1]
       await input1.delete(True)
-      #s = requests.Session()
+      s = requests.Session()
       response = s.post(url = url, headers=headers, json=data, timeout=10)
       if response.status_code == 200:
           data = response.json()
@@ -310,11 +310,11 @@ async def account_login(bot: Client, m: Message):
           await m.reply_text(token)
       else:
            await m.reply_text("go back to response")
-      #token = "4ffd1627981589c0a1261f7a114fbbf8bc87c6d9"
+      token = "4ffd1627981589c0a1261f7a114fbbf8bc87c6d9"
       await m.reply_text(f"```{token}```")
     else:
       token = raw_text
-    html1 = s.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token=" + token).json()
+    html1 = s.get("https://elearn.crwilladmin.com/api/v1/comp/my-batch?&token="+token).json()
     topicid = html1["data"]["batchData"]
     cool=""
     for data in topicid:
